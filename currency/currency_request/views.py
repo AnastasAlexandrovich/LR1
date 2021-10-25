@@ -20,5 +20,16 @@ class ExchangeCurrencyView(View):
 
     def get(self, request):
         currencies = CurrencyModel.objects.all()
-        return HttpResponse(currencies)
+        responses = []
+        for currency in currencies:
+            responses.append(
+                {
+                    'id': currency.id,
+                    'name': currency.name,
+                    'value': currency.value,
+                    'timestamp': currency.timestamp,
+                    'date': str(currency.date)
+                }
+            )
+        return HttpResponse(json.dumps(responses), status=200, content_type="application/json")
 

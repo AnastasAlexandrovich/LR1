@@ -8,7 +8,7 @@ from fixerio import Fixerio
 from .models import CurrencyModel
 
 
-@periodic_task(run_every=(timedelta(hours=1)), name='update database')
+@periodic_task(run_every=(timedelta(hours=4)), name='update database')
 def delete_not_confirmed_exchanges():
     fxrio = Fixerio(access_key='e09a7f016b0fd315c52e03a3d5cea36f')
     res = fxrio.latest()
